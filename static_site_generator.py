@@ -77,6 +77,10 @@ class StaticSiteGenerator:
         self.clear_output(output_dir)
         self.copy_static_files(output_dir)
         
+        # Create .nojekyll file for GitHub Pages
+        if output_dir == self.github_output_dir:
+            (output_dir / '.nojekyll').touch()
+        
         # Process all markdown files
         markdown_files = list(self.content_dir.glob('**/*.md'))
         pages = []
