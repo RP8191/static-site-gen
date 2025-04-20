@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static-site-gen/static/css/style.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/static-site-gen/">My Static Site</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/static-site-gen/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">Untitled</h1>
+        
+    </header>
+
+    <div class="post-content">
+        <h1>Compile simple elm app</h1>
+<p>Jump when you are not ready !</p>
+<p>We did first</p>
+<div class="codehilite"><pre><span></span><code>elm init
+</code></pre></div>
+
+<p>it created src folder and couple of json files</p>
+<p>Then we added a Homepage.elm in src folder.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">module</span> <span class="n">Homepage</span> <span class="n">exposing</span> <span class="p">(</span><span class="n">main</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">Html</span> <span class="n">exposing</span> <span class="p">(</span><span class="o">..</span><span class="p">)</span>
+
+<span class="n">main</span> <span class="o">=</span> 
+<span class="n">text</span> <span class="s2">&quot;hello!&quot;</span>
+</code></pre></div>
+
+<p>After this we ran the elm make as follows :</p>
+<div class="codehilite"><pre><span></span><code>elm make src/Homepage.elm --output Homepage.js
+</code></pre></div>
+
+<p>This created Homepage.js alongside src folder.</p>
+<p>Then we added index.html file manually next to Homepage.js</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;html&gt;</span><span class="w"> </span>
+<span class="nt">&lt;head&gt;</span><span class="w">    </span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="w">    </span><span class="nt">&lt;body&gt;</span>
+<span class="w">        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;elm_element&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="w">        </span><span class="nt">&lt;script</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Homepage.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="w">        </span><span class="nt">&lt;script&gt;</span>
+<span class="w">        </span>var<span class="w"> </span>app<span class="w"> </span>=<span class="w"> </span>Elm.Homepage.init({
+<span class="w">          </span>node:<span class="w"> </span>document.getElementById<span class="w"> </span>(&quot;elm_element&quot;)<span class="w">  </span>
+<span class="w">        </span>});
+<span class="w">        </span><span class="nt">&lt;/script&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+
+<hr />
+<p>value and functions</p>
+<p>value = value 
+function = way to transform values  - values passed to function are called arguments </p>
+<p>functions from List module = List.isEmpty names</p>
+<hr />
+<p>view : Model -&gt; Html msg</p>
+<p>means view takes a model and returns an HTML which is capable of producing messages of message type.
+in other words view takes a model and returns html (capable of producing messages)
+read view as "html view of model"</p>
+<p>model : </p>
+<p>model is just a model</p>
+<p>update : Msg -&gt; model -&gt; </p>
+<p>means update takes a message of type message along with model and returns updated model
+in other words read update as "update model". </p>
+<hr />
+<p>module Main exposing (..)</p>
+<p>.. means we are exposing everything in the modules.</p>
+<p>We can choose to expose only certain functions. </p>
+<p>The functions we import from Hrml module like "begineeerProgram, button, div etc" are functions. they dont do anything they just return a value. button , div and text are functions which take set of arguments for attributes and return a virtual representation of what that markup might be.</p>
+<p>Html.Events onClick function will take a message type I want to trigger and give me an attribute I can put in an element</p>
+<p>always 4 things: </p>
+<p>2 values : </p>
+<ol>
+<li>
+<p>initialModel </p>
+</li>
+<li>
+<p>type Msg : you can call it whatever like action etc.</p>
+</li>
+</ol>
+<p>then we write 2 functions </p>
+<p>1.update msg model - takes msg and model -&gt; return the new model based on business logic</p>
+<ol>
+<li>view model - takes model and returns markup.</li>
+</ol>
+<p>Elm always looks for an entry point called main. You have to pass a program value. Program value is what describes how our program functions. </p>
+<p>-----------------CSS</p>
+<p>https://github.com/monty5811/postcss-elm-tailwind</p>
+<p>http://elm-bootstrap.info/</p>
+<hr />
+<p>So conceptually, every function accepts one argument. It may return another function that accepts one argument. Etc. At some point it will stop returning functions.</p>
+<hr />
+<p>List.map : (a -&gt; b) -&gt; List a -&gt; List b</p>
+<p>map takes function and a list. </p>
+<p>Elm also uses the convention that the data structure is always the last argument across the ecosystem. This means that functions are usually designed with this possible usage in mind, making this a pretty common technique.</p>
+<p>Partial application </p>
+<p>Html Message : </p>
+<p>div[]
+    [
+            button [] [text "-"]
+        ,   text (String.fromInt model)
+        ,   button [] [text "+"] 
+    ]</p>
+<p>div [] [button [] [...] ] </p>
+<p>First argument in div (and button) function represents attibutes to div and second argument represents list of nested elements.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted">© 2024 My Static Site</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html> 

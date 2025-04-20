@@ -1,0 +1,3 @@
+docs/** linguist-generated=false
+docs/** -text
+docs/** export-ignore 
