@@ -74,18 +74,22 @@ class StaticSiteGenerator:
 
     def generate_site(self, output_dir):
         """Generate the static site in the specified output directory"""
+        print(f"Generating site in {output_dir}")
         self.clear_output(output_dir)
         self.copy_static_files(output_dir)
         
         # Create .nojekyll file for GitHub Pages
         if output_dir == self.github_output_dir:
             (output_dir / '.nojekyll').touch()
+            print("Created .nojekyll file for GitHub Pages")
         
         # Process all markdown files
         markdown_files = list(self.content_dir.glob('**/*.md'))
+        print(f"Found {len(markdown_files)} markdown files")
         pages = []
         
         for md_file in markdown_files:
+            print(f"Processing {md_file}")
             output_path = self.generate_page(md_file, output_dir)
             # Get the title from the frontmatter
             post = frontmatter.load(md_file)
@@ -101,11 +105,14 @@ class StaticSiteGenerator:
                 'title': title
             })
         
-        # Generate index page if it doesn't exist
-        if not (output_dir / 'index.html').exists():
-            template = self.env.get_template('index.html')
-            index_content = template.render(pages=pages)
-            (output_dir / 'index.html').write_text(index_content)
+        # Generate index page
+        print("Generating index page...")
+        template = self.env.get_template('index.html')
+        index_content = template.render(pages=pages, base_url=self.base_url)
+        index_path = output_dir / 'index.html'
+        print(f"Writing index.html to {index_path}")
+        index_path.write_text(index_content)
+        print("Site generation complete!")
 
 if __name__ == '__main__':
     # For GitHub Pages, set this to your repository name
