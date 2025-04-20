@@ -104,9 +104,24 @@ class StaticSiteGenerator:
             (output_dir / 'index.html').write_text(index_content)
 
 if __name__ == '__main__':
-    # For GitHub Pages, you would set this to your repository name
-    # e.g., "/your-repo-name" or "" for username.github.io
+    # For GitHub Pages, set this to your repository name
+    # e.g., "/static-site-gen" for https://username.github.io/static-site-gen/
+    # or "" for https://username.github.io/
     base_url = os.getenv('SITE_BASE_URL', '')
+    
+    # If no base_url is set, try to get it from the current directory name
+    if not base_url and os.path.exists('.git'):
+        try:
+            import subprocess
+            # Get the remote URL
+            remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url']).decode().strip()
+            # Extract repository name
+            repo_name = remote_url.split('/')[-1].replace('.git', '')
+            if repo_name != 'username.github.io':  # Only add base_url if not using the main GitHub Pages domain
+                base_url = f'/{repo_name}'
+        except:
+            pass
+    
     generator = StaticSiteGenerator(base_url=base_url)
     
     # Generate both local and GitHub Pages versions
@@ -114,4 +129,6 @@ if __name__ == '__main__':
     generator.generate_site(generator.local_output_dir)
     
     print("Generating GitHub Pages version...")
-    generator.generate_site(generator.github_output_dir) 
+    generator.generate_site(generator.github_output_dir)
+    
+    print(f"\nGitHub Pages URL will be: https://username.github.io{base_url}/") 

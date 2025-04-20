@@ -14,5 +14,5 @@
 
 
 
-industrial asset lifecycle 
+
 
