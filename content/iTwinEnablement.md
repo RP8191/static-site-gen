@@ -8,18 +8,14 @@ usecases
 
 design standards model - what is it?
 
-
 show us the workflows 
 
 1. ELT of the data - 
 2. components
-3. ALIM integration
-4.  change management 
-
-
+3. change management 
 
 How do we provide access to contractors 
-    - only way to do it by iModels
+
     - should we create branches to deliniate access
     - we shouldn't be create branch for each access
 
@@ -54,26 +50,22 @@ All of us, as an AEC software Industry, believe that digital twins could help us
 Irrespective of the specific industry, there are certain patterns which emerge while using digital twins. User just wants the latest available information about a piece of asset irrespective of the application the information or part of it resides in. 
 
 At the most basic level there are patterns to 
+
 1. make information accessible to the user
-    - this could be form factor used to consume the information e.g. on a mobile device via an app, or on a desktop via a web portal 
-    - patterns to fetch or expose information out of the applications used to produce the information 
-    - pattern to align the information if parts of it reside in multiple applications 
-    - patterns to cache the information so that it can be quickly presented to the user
-    - patterns to validate the information  
+   - this could be form factor used to consume the information e.g. on a mobile device via an app, or on a desktop via a web portal 
+   - patterns to fetch or expose information out of the applications used to produce the information 
+   - pattern to align the information if parts of it reside in multiple applications 
+   - patterns to cache the information so that it can be quickly presented to the user
+   - patterns to validate the information  
 2. consumption of the information 
-    - patterns of behavior when asset it selected in a graphical UI 
-    - patterns to query and filter the information
-    - patterns to ask questions about the information 
-    - patterns to discuss about the information 
-    -  
-
-
- 
-
+   - patterns of behavior when asset it selected in a graphical UI 
+   - patterns to query and filter the information
+   - patterns to ask questions about the information 
+   - patterns to discuss about the information 
+   - 
 
 these information access patterns depend upon following things 
+
 - the persona of the user accessing the information
 - the lifecycle stage of the asset - type of the information being accessed 
--  
-
-
+- 
